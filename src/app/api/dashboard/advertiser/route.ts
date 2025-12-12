@@ -101,3 +101,21 @@ export async function POST(request: NextRequest) {
         );
     }
 }
+
+
+export async function GET(request: NextRequest) {
+    try {
+        const leads = await prisma.leads.findMany({
+            orderBy: { createdAt: "desc" },
+        });
+
+        return NextResponse.json({ leads }, { status: 200 });
+
+    } catch (error) {
+        console.error("Error fetching leads:", error);
+        return NextResponse.json(
+            { message: "Internal Server Error" },
+            { status: 500 }
+        );
+    }
+}
