@@ -32,6 +32,7 @@ export async function POST(req: NextRequest) {
       email: user.email,
       username: user.username,
       isAdmin: user.isAdmin,
+      userType: user.userType,
     };
 
     const token = jwt.sign(tokenPayload, process.env.JWT_SECRET!, {
@@ -42,7 +43,7 @@ export async function POST(req: NextRequest) {
     const response = NextResponse.json(
       {
         message: "Login successful",
-        user: { id: user.id, email: user.email },
+        user: { id: user.id, email: user.email,isAdmin: user.isAdmin, userType: user.userType},
       },
       { status: 200 }
     );

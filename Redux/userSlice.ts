@@ -5,6 +5,7 @@ interface User {
   email?: string;
   name?: string;
   isAdmin?: boolean;
+  userType?: string;
 }
 
 interface UserState {

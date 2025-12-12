@@ -4,9 +4,9 @@ import { prisma } from "@/lib/prisma";
 
 export async function POST(request: NextRequest) {
   try {
-    const { username, email, password } = await request.json();
+    const { username, email, password , userType} = await request.json();
 
-    if (!username || !email || !password) {
+    if (!username || !email || !password || !userType) {
       return NextResponse.json(
         { message: "All fields are required" },
         { status: 400 }
@@ -54,17 +54,26 @@ export async function POST(request: NextRequest) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    if(userType !== "ADVERTISER" && userType !== "AFFILIATE"){
+      return NextResponse.json(
+        { message: "Invalid user type" },
+        { status: 400 }
+      );
+    }
+
     const user = await prisma.user.create({
       data: {
         username,
         email,
         password: hashedPassword,
+        userType,
       },
       select: {
         id: true,
         username: true,
         email: true,
         isAdmin: true,
+        userType: true,
       },
     });
 

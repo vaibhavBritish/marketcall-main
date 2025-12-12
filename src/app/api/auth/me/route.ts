@@ -6,6 +6,7 @@ interface JWTPayload {
     email: string;
     username?: string;
     isAdmin: boolean;
+    userType?: string;
     iat: number;
     exp: number;
 }
@@ -25,7 +26,8 @@ export async function GET(request: NextRequest) {
                     id: decoded.id,
                     email: decoded.email,
                     username: decoded.username,
-                    isAdmin: decoded.isAdmin
+                    isAdmin: decoded.isAdmin,
+                    userType: decoded.userType,
                 }
             },
             { status: 200 }
