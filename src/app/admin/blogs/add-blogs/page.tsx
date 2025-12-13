@@ -5,7 +5,7 @@ import useCheckAuth from "../../../../../hooks/useCheckAuth";
 import AdminLayout from "@/components/AdminLayout";
 
 const AddBlogs = () => {
-  const { user, loading } = useCheckAuth();
+  const { user, loading } = useCheckAuth({ requireAdmin: true });
 
   const [form, setForm] = useState({
     title: "",

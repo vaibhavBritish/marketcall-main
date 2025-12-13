@@ -4,7 +4,7 @@ import AdminLayout from '@/components/AdminLayout'
 import useCheckAuth from '../../../hooks/useCheckAuth'
 
 const AdminDashboard = () => {
-  const { user, loading } = useCheckAuth()
+  const { user, loading } = useCheckAuth({ requireAdmin: true })
 
   if (loading) {
     return (

@@ -5,7 +5,7 @@ import useCheckAuth from "../../../../hooks/useCheckAuth";
 import AdminLayout from "@/components/AdminLayout";
 
 const AdminUsers = () => {
-  const { user, loading } = useCheckAuth();
+  const { user, loading } = useCheckAuth({ requireAdmin: true });
   const [users, setUsers] = useState<any[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
 

@@ -9,7 +9,7 @@ const AdminEditBlogs = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
 
   const router = useRouter();
-  const { user, loading: authLoading } = useCheckAuth();
+  const { user, loading: authLoading } = useCheckAuth({ requireAdmin: true });
 
   const [form, setForm] = useState({
     title: "",
